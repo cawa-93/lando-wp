@@ -3,6 +3,7 @@ https://lando.dev/
 ```
 lando start
 ```
+Відкрити http://lando-wp-experiments.lndo.site/
 
 За бажанням імпортувати тестову базу з файла
 ```
