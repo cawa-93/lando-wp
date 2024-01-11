@@ -2,4 +2,14 @@ name: lando-wp-experiments
 recipe: wordpress
 
 config:
-  webroot: .
+    webroot: web
+    php: 8.1
+
+env_file:
+    - .env
+
+
+services:
+    appserver:
+        run:
+            - composer install

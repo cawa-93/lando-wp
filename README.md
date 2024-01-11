@@ -10,6 +10,37 @@ lando start
 lando db-import ./db-dump.sql.gz
 ```
 
+### Керування
+```
+lando rebuild
+```
+Перезбирає контейнери **та встановлює всі вендорні залежності як то composer install чи npm install**
+
+```
+lando stop
+```
+Зупиняє контейнери пов'язані з проєктом
+
+
+```
+lando poweroff
+```
+Зупиняє всі контейнери
+
+
+### Доступні інструменти
+```
+lando php ...
+```
+```
+lando composer ...
+```
+```
+lando wp ...
+```
+
+
+
 ## Камені
 Немає JSON schema для конфігурації
 https://github.com/lando/lando/issues/2242
