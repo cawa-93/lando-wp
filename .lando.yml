@@ -17,6 +17,8 @@ services:
     node:
         type: node:18
         command: yarn run dev
-        port: 3000
         run:
             - yarn install
+proxy:
+    node:
+        - bud.lando-wp-experiments.lndo.site:3000

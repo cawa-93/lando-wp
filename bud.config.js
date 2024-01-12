@@ -26,13 +26,6 @@ export default async (app) => {
      * @see {@link https://bud.js.org/docs/bud.assets}
      */
     app.entry('app', ['@scripts/app', '@styles/app'])
-        .entry('home', ['@styles/pages/home'])
-        .entry('category', ['@scripts/category', '@styles/pages/category'])
-        .entry('post', ['@styles/pages/post'])
-        .entry('search', ['@styles/pages/search'])
-        .entry('404', ['@styles/pages/404'])
-        .entry('page', ['@styles/pages/page'])
-        .entry('editor', ['@scripts/editor', '@styles/editor'])
         .assets(['images'])
         .minimize();
 
@@ -50,9 +43,10 @@ export default async (app) => {
      * @see {@link https://bud.js.org/docs/bud.setProxyUrl}
      * @see {@link https://bud.js.org/docs/bud.watch}
      */
-    app.setUrl(3000)
-        .setProxyUrl('http://lando-wp-experiments.lndo.site')
+    app
+        .setUrl(new URL(`http://example.test`))
         .watch(['web/app/themes/your-theme-name/resources/views', 'app']);
+
 
     /**
      * Generate WordPress `theme.json`
@@ -62,10 +56,10 @@ export default async (app) => {
      * @see {@link https://bud.js.org/extensions/sage/theme.json}
      * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json}
      */
-    app.wpjson
-        .useTailwindFontFamily()
-        .setSettings(blocksThemeSettings)
-        .enable();
+    // app.wpjson
+        // .useTailwindFontFamily()
+        // .setSettings(blocksThemeSettings)
+        // .enable();
 
     /**
      * Move generated WordPress `theme.json` to theme dir
