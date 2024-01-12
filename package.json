@@ -1,0 +1,18 @@
+{
+  "name": "sage",
+  "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "bud dev",
+    "build": "bud build"
+  },
+  "devDependencies": {
+    "@roots/bud": "6.16.1",
+    "@roots/bud-tailwindcss": "6.16.1",
+    "@roots/sage": "6.16.1"
+  },
+  "dependencies": {}
+}

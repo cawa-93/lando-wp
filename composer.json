@@ -1,28 +1,5 @@
 {
-  "name": "roots/bedrock",
   "type": "project",
-  "license": "MIT",
-  "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
-  "homepage": "https://roots.io/bedrock/",
-  "authors": [
-    {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
-    },
-    {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
-    }
-  ],
-  "keywords": [
-    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config"
-  ],
-  "support": {
-    "issues": "https://github.com/roots/bedrock/issues",
-    "forum": "https://discourse.roots.io/category/bedrock"
-  },
   "repositories": [
     {
       "type": "composer",
@@ -37,14 +14,22 @@
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "6.4.2",
+    "roots/wordpress": "^6.4",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
-    "wpackagist-theme/twentytwentythree": "^1.0",
-    "wpackagist-plugin/wordpress-seo": "^21.8"
+    "roots/acorn": "^3.2",
+    "wpackagist-plugin/wp-dummy-content-generator": "^3.1",
+    "wpackagist-plugin/updraftplus": "^1.23",
+    "wpackagist-plugin/svg-support": "^2.5",
+    "wpackagist-plugin/cmb2": "^2.10",
+    "log1x/sage-svg": "^1.1",
+    "wpackagist-plugin/wordpress-seo": "^21.7",
+    "wpackagist-plugin/contact-form-7": "^5.8",
+    "wpackagist-plugin/smtp-amazon-ses": "^1.7",
+    "wpackagist-plugin/webp-converter-for-media": "^5.11"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.7.1",
+    "squizlabs/php_codesniffer": "^3.8.0",
     "roave/security-advisories": "dev-latest"
   },
   "config": {
@@ -59,18 +44,34 @@
   "prefer-stable": true,
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "wpackagist-plugin/cmb2"],
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
-    "wordpress-install-dir": "web/wp"
+    "wordpress-install-dir": "web/wp",
+    "acorn": {
+      "providers": [
+        "App\\Providers\\ThemeServiceProvider"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "web/app/themes/your-theme-name/app/"
+    }
   },
   "scripts": {
-    "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
-    ],
     "test": [
-      "phpcs"
+      "composer run lint"
+    ],
+    "lint": [
+      "phpcs --standard=phpcs.xml"
+    ],
+    "lint:fix": [
+      "phpcbf --standard=phpcs.xml"
+    ],
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
     ]
   }
 }
